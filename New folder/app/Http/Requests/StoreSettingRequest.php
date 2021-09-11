@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Http\Requests;
+
+use App\Models\Setting;
+use Gate;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
+
+class StoreSettingRequest extends FormRequest
+{
+    public function authorize()
+    {
+        return Gate::allows('setting_create');
+    }
+
+    public function rules()
+    {
+        return [
+            'draw_on_every_travel_p' => [
+                'nullable',
+                'integer',
+                'min:-2147483648',
+                'max:2147483647',
+            ],
+            'type' => [
+                'required',
+            ],
+        ];
+    }
+}
