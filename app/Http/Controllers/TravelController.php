@@ -22,7 +22,7 @@ class TravelController extends Controller
         $user = JWTAuth::toUser($token);
         $driver = Driver::where("user_id" , $request->driver_id)->first();
 
-        return $user->id;
+        // return $user->id;
         $client = Client::where("user_id" , $user->id)->first();
 // return $user->id;
    $ar = [
