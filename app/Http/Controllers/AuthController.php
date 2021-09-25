@@ -74,7 +74,7 @@ class AuthController extends Controller
         $token = JWTAuth::getToken();
         $user = JWTAuth::toUser($token);
        
-        $array = array( "user"=> $user,  "car_registerd" => false , "subscription"=> false , "confirmed"=> false  );
+     
 
         $vol = Confimation::where("user_id", $user->id)->where("status", "pending")->first();
 
@@ -96,7 +96,7 @@ class AuthController extends Controller
             ]);
 
             return response()->json([
-                'payload' =>  $array,
+                'payload' =>   $user,
                 'access_token' => $token ,
                 'status'=> true,
                 'code'=> 200
