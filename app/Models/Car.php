@@ -34,6 +34,7 @@ class Car extends Model implements HasMedia
         'license_number',
         'insurance_policy_number',
         'city',
+        'driver_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -79,6 +80,11 @@ class Car extends Model implements HasMedia
         }
 
         return $file;
+    }
+
+    public function driver()
+    {
+        return $this->belongsTo(Driver::class, 'driver_id');
     }
 
     protected function serializeDate(DateTimeInterface $date)

@@ -54,6 +54,24 @@
                             {{ trans('cruds.car.fields.city') }}
                         </th>
                         <th>
+                            {{ trans('cruds.car.fields.driver') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.driver.fields.email') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.driver.fields.phone') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.driver.fields.delete') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.driver.fields.confirm') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.driver.fields.wallet') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -83,6 +101,24 @@
                         </td>
                         <td>
                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <select class="search">
+                                <option value>{{ trans('global.all') }}</option>
+                                @foreach($drivers as $key => $item)
+                                    <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
                         </td>
                         <td>
                         </td>
@@ -132,6 +168,28 @@
                             </td>
                             <td>
                                 {{ $car->city ?? '' }}
+                            </td>
+                            <td>
+                                {{ $car->driver->name ?? '' }}
+                            </td>
+                            <td>
+                                {{ $car->driver->email ?? '' }}
+                            </td>
+                            <td>
+                                {{ $car->driver->phone ?? '' }}
+                            </td>
+                            <td>
+                                @if($car->driver)
+                                    {{ $car->driver::DELETE_SELECT[$car->driver->delete] ?? '' }}
+                                @endif
+                            </td>
+                            <td>
+                                @if($car->driver)
+                                    {{ $car->driver::CONFIRM_SELECT[$car->driver->confirm] ?? '' }}
+                                @endif
+                            </td>
+                            <td>
+                                {{ $car->driver->wallet ?? '' }}
                             </td>
                             <td>
                                 @can('car_show')

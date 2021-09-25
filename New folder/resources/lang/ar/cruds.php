@@ -2,8 +2,8 @@
 
 return [
     'userManagement' => [
-        'title'          => 'المستخدمين',
-        'title_singular' => 'المستخدمين',
+        'title'          => 'غدارة المستخدمين',
+        'title_singular' => 'غدارة المستخدمين',
     ],
     'permission' => [
         'title'          => 'الصلاحيات',
@@ -97,6 +97,8 @@ return [
             'updated_at_helper'                  => ' ',
             'deleted_at'                         => 'Deleted at',
             'deleted_at_helper'                  => ' ',
+            'driver'                             => 'Driver',
+            'driver_helper'                      => ' ',
         ],
     ],
     'driver' => [
@@ -117,8 +119,6 @@ return [
             'email_helper'      => ' ',
             'phone'             => 'Phone',
             'phone_helper'      => ' ',
-            'password'          => 'Password',
-            'password_helper'   => ' ',
             'delete'            => 'Delete account',
             'delete_helper'     => ' ',
             'confirm'           => 'Confirm delete',
@@ -141,8 +141,6 @@ return [
             'phone_helper'      => ' ',
             'email'             => 'email',
             'email_helper'      => ' ',
-            'password'          => 'Password',
-            'password_helper'   => ' ',
             'user'              => 'User',
             'user_helper'       => ' ',
             'created_at'        => 'Created at',
@@ -291,6 +289,26 @@ return [
             'updated_at_helper'        => ' ',
             'deleted_at'               => 'Deleted at',
             'deleted_at_helper'        => ' ',
+        ],
+    ],
+    'confimation' => [
+        'title'          => 'Confimation',
+        'title_singular' => 'Confimation',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => ' ',
+            'code'              => 'Code',
+            'code_helper'       => ' ',
+            'user'              => 'User',
+            'user_helper'       => ' ',
+            'status'            => 'Status',
+            'status_helper'     => ' ',
+            'created_at'        => 'Created at',
+            'created_at_helper' => ' ',
+            'updated_at'        => 'Updated at',
+            'updated_at_helper' => ' ',
+            'deleted_at'        => 'Deleted at',
+            'deleted_at_helper' => ' ',
         ],
     ],
 ];

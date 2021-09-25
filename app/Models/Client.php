@@ -12,10 +12,6 @@ class Client extends Model
 
     public $table = 'clients';
 
-    protected $hidden = [
-        'password',
-    ];
-
     protected $dates = [
         'created_at',
         'updated_at',
@@ -26,7 +22,6 @@ class Client extends Model
         'name',
         'phone',
         'email',
-        'password',
         'user_id',
         'created_at',
         'updated_at',

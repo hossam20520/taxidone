@@ -49,18 +49,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.client.fields.password') }}
-                        </th>
-                        <td>
-                            ********
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.client.fields.user') }}
                         </th>
                         <td>
-                            {{ $client->user->approved ?? '' }}
+                            {{ $client->user->email ?? '' }}
                         </td>
                     </tr>
                 </tbody>

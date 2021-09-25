@@ -57,14 +57,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.driver.fields.password') }}
-                        </th>
-                        <td>
-                            ********
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.driver.fields.delete') }}
                         </th>
                         <td>
@@ -84,7 +76,7 @@
                             {{ trans('cruds.driver.fields.user') }}
                         </th>
                         <td>
-                            {{ $driver->user->approved ?? '' }}
+                            {{ $driver->user->email ?? '' }}
                         </td>
                     </tr>
                 </tbody>

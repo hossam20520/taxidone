@@ -99,6 +99,14 @@
                             {{ $car->city }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.car.fields.driver') }}
+                        </th>
+                        <td>
+                            {{ $car->driver->name ?? '' }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

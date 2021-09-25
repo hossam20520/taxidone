@@ -42,7 +42,13 @@
                             {{ trans('cruds.client.fields.user') }}
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.approved') }}
+                            {{ trans('cruds.user.fields.name') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.email') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.phone') }}
                         </th>
                         <th>
                             &nbsp;
@@ -67,9 +73,13 @@
                             <select class="search">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach($users as $key => $item)
-                                    <option value="{{ $item->approved }}">{{ $item->approved }}</option>
+                                    <option value="{{ $item->email }}">{{ $item->email }}</option>
                                 @endforeach
                             </select>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
                         </td>
                         <td>
                         </td>
@@ -96,11 +106,16 @@
                                 {{ $client->email ?? '' }}
                             </td>
                             <td>
-                                {{ $client->user->approved ?? '' }}
+                                {{ $client->user->email ?? '' }}
                             </td>
                             <td>
-                                <span style="display:none">{{ $client->user->approved ?? '' }}</span>
-                                <input type="checkbox" disabled="disabled" {{ $client->user->approved ? 'checked' : '' }}>
+                                {{ $client->user->name ?? '' }}
+                            </td>
+                            <td>
+                                {{ $client->user->email ?? '' }}
+                            </td>
+                            <td>
+                                {{ $client->user->phone ?? '' }}
                             </td>
                             <td>
                                 @can('client_show')

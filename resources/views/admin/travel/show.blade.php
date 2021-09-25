@@ -92,7 +92,7 @@
                             {{ trans('cruds.travel.fields.driver') }}
                         </th>
                         <td>
-                            {{ $travel->driver->name ?? '' }}
+                            {{ $travel->driver->email ?? '' }}
                         </td>
                     </tr>
                     <tr>

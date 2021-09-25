@@ -13,13 +13,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+use Laravel\Sanctum\HasApiTokens;
+// use Spatie\MediaLibrary\HasMedia;
+// use Spatie\MediaLibrary\InteractsWithMedia;
+// use Spatie\MediaLibrary\MediaCollections\Models\Media;
+
+class User extends  Authenticatable implements JWTSubject 
 {
     use SoftDeletes;
     use Notifiable;
     use HasFactory;
-
+    use HasApiTokens;
+    // use InteractsWithMedia;
     public $table = 'users';
 
     protected $hidden = [
@@ -93,5 +100,15 @@ class User extends Authenticatable
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }

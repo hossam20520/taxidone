@@ -32,7 +32,7 @@ class DriversController extends Controller
     {
         abort_if(Gate::denies('driver_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::pluck('approved', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $users = User::pluck('email', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         return view('admin.drivers.create', compact('users'));
     }
@@ -48,7 +48,7 @@ class DriversController extends Controller
     {
         abort_if(Gate::denies('driver_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::pluck('approved', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $users = User::pluck('email', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $driver->load('user');
 

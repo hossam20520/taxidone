@@ -51,6 +51,9 @@
                             {{ trans('cruds.driver.fields.user') }}
                         </th>
                         <th>
+                            {{ trans('cruds.user.fields.phone') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -92,9 +95,11 @@
                             <select class="search">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach($users as $key => $item)
-                                    <option value="{{ $item->approved }}">{{ $item->approved }}</option>
+                                    <option value="{{ $item->email }}">{{ $item->email }}</option>
                                 @endforeach
                             </select>
+                        </td>
+                        <td>
                         </td>
                         <td>
                         </td>
@@ -128,7 +133,10 @@
                                 {{ App\Models\Driver::CONFIRM_SELECT[$driver->confirm] ?? '' }}
                             </td>
                             <td>
-                                {{ $driver->user->approved ?? '' }}
+                                {{ $driver->user->email ?? '' }}
+                            </td>
+                            <td>
+                                {{ $driver->user->phone ?? '' }}
                             </td>
                             <td>
                                 @can('driver_show')

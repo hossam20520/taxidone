@@ -179,6 +179,18 @@
                         </a>
                     </li>
                 @endcan
+                @can('confimation_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.confimations.index") }}" class="nav-link {{ request()->is("admin/confimations") || request()->is("admin/confimations/*") ? "active" : "" }}">
+                            <i class="fa-fw nav-icon fas fa-check-double">
+
+                            </i>
+                            <p>
+                                {{ trans('cruds.confimation.title') }}
+                            </p>
+                        </a>
+                    </li>
+                @endcan
                 @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
                     @can('profile_password_edit')
                         <li class="nav-item">

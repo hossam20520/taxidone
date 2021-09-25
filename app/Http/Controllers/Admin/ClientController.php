@@ -32,7 +32,7 @@ class ClientController extends Controller
     {
         abort_if(Gate::denies('client_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::pluck('approved', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $users = User::pluck('email', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         return view('admin.clients.create', compact('users'));
     }
@@ -48,7 +48,7 @@ class ClientController extends Controller
     {
         abort_if(Gate::denies('client_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::pluck('approved', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $users = User::pluck('email', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $client->load('user');
 

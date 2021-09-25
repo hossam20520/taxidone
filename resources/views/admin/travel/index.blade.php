@@ -54,10 +54,13 @@
                             {{ trans('cruds.travel.fields.client') }}
                         </th>
                         <th>
-                            {{ trans('cruds.client.fields.email') }}
+                            {{ trans('cruds.client.fields.name') }}
                         </th>
                         <th>
                             {{ trans('cruds.travel.fields.driver') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.driver.fields.name') }}
                         </th>
                         <th>
                             {{ trans('cruds.driver.fields.email') }}
@@ -108,9 +111,11 @@
                             <select class="search">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach($drivers as $key => $item)
-                                    <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                    <option value="{{ $item->email }}">{{ $item->email }}</option>
                                 @endforeach
                             </select>
+                        </td>
+                        <td>
                         </td>
                         <td>
                         </td>
@@ -160,7 +165,10 @@
                                 {{ $travel->client->email ?? '' }}
                             </td>
                             <td>
-                                {{ $travel->client->email ?? '' }}
+                                {{ $travel->client->name ?? '' }}
+                            </td>
+                            <td>
+                                {{ $travel->driver->email ?? '' }}
                             </td>
                             <td>
                                 {{ $travel->driver->name ?? '' }}

@@ -256,6 +256,26 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 62,
+                'title' => 'confimation_create',
+            ],
+            [
+                'id'    => 63,
+                'title' => 'confimation_edit',
+            ],
+            [
+                'id'    => 64,
+                'title' => 'confimation_show',
+            ],
+            [
+                'id'    => 65,
+                'title' => 'confimation_delete',
+            ],
+            [
+                'id'    => 66,
+                'title' => 'confimation_access',
+            ],
+            [
+                'id'    => 67,
                 'title' => 'profile_password_edit',
             ],
         ];

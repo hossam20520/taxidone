@@ -37,7 +37,7 @@ class TravelsController extends Controller
 
         $clients = Client::pluck('email', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $drivers = Driver::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $drivers = Driver::pluck('email', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         return view('admin.travel.create', compact('clients', 'drivers'));
     }
@@ -55,7 +55,7 @@ class TravelsController extends Controller
 
         $clients = Client::pluck('email', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $drivers = Driver::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $drivers = Driver::pluck('email', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $travel->load('client', 'driver');
 

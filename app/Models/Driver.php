@@ -22,10 +22,6 @@ class Driver extends Model
 
     public $table = 'drivers';
 
-    protected $hidden = [
-        'password',
-    ];
-
     protected $dates = [
         'created_at',
         'updated_at',
@@ -37,7 +33,6 @@ class Driver extends Model
         'name',
         'email',
         'phone',
-        'password',
         'delete',
         'confirm',
         'user_id',

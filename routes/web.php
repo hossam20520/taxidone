@@ -84,6 +84,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
      Route::post('subscriptiondrivers/parse-csv-import', 'SubscriptiondriverController@parseCsvImport')->name('subscriptiondrivers.parseCsvImport');
      Route::post('subscriptiondrivers/process-csv-import', 'SubscriptiondriverController@processCsvImport')->name('subscriptiondrivers.processCsvImport');
      Route::resource('subscriptiondrivers', 'SubscriptiondriverController');
+
+         // Confimation
+    Route::delete('confimations/destroy', 'ConfimationController@massDestroy')->name('confimations.massDestroy');
+    Route::post('confimations/parse-csv-import', 'ConfimationController@parseCsvImport')->name('confimations.parseCsvImport');
+    Route::post('confimations/process-csv-import', 'ConfimationController@processCsvImport')->name('confimations.processCsvImport');
+    Route::resource('confimations', 'ConfimationController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password

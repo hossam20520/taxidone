@@ -34,14 +34,6 @@
                 <span class="help-block">{{ trans('cruds.client.fields.email_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="password">{{ trans('cruds.client.fields.password') }}</label>
-                <input class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" type="password" name="password" id="password">
-                @if($errors->has('password'))
-                    <span class="text-danger">{{ $errors->first('password') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.client.fields.password_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label for="user_id">{{ trans('cruds.client.fields.user') }}</label>
                 <select class="form-control select2 {{ $errors->has('user') ? 'is-invalid' : '' }}" name="user_id" id="user_id">
                     @foreach($users as $id => $entry)

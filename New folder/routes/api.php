@@ -28,4 +28,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Subscriptiondriver
     Route::apiResource('subscriptiondrivers', 'SubscriptiondriverApiController');
+
+    // Confimation
+    Route::apiResource('confimations', 'ConfimationApiController');
 });

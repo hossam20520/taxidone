@@ -43,14 +43,6 @@
                 <span class="help-block">{{ trans('cruds.driver.fields.phone_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="password">{{ trans('cruds.driver.fields.password') }}</label>
-                <input class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" type="password" name="password" id="password">
-                @if($errors->has('password'))
-                    <span class="text-danger">{{ $errors->first('password') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.driver.fields.password_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label>{{ trans('cruds.driver.fields.delete') }}</label>
                 <select class="form-control {{ $errors->has('delete') ? 'is-invalid' : '' }}" name="delete" id="delete">
                     <option value disabled {{ old('delete', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
