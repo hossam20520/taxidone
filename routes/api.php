@@ -44,6 +44,7 @@ Route::group([ 'middleware' => ['jwt.verify']], function() {
 
 
 Route::post('driver/register', 'AuthController@RegisterDriver');
+Route::post('client/register', 'AuthController@RegisterClient');
 Route::post('driver/login', 'AuthController@LoginDriver');
 
 Route::post('client/login', 'AuthController@LoginClient');
