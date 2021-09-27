@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Driver;
+use App\Models\Client;
 class UserController extends Controller
 {
    
