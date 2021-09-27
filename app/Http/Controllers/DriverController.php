@@ -38,8 +38,10 @@ class DriverController extends Controller
     $pers = User::find($user->id);
     
     $pers->roles;
-    return $pers;
+  
     $rol = $pers->roles[0]->title;
+
+    return $rol;
     if($rol == "Driver"){
         $driver = Driver::where("user_id" ,$user->id)->first();
         $travels = Travel::where("driver_id" , $driver->id )->get();
