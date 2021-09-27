@@ -36,8 +36,9 @@ class DriverController extends Controller
 
 
     $pers = User::find($user->id);
-    return $pers;
+    
     $pers->roles;
+    return $pers;
     $rol = $pers->roles[0]->title;
     if($rol == "Driver"){
         $driver = Driver::where("user_id" ,$user->id)->first();
