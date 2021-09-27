@@ -18,19 +18,34 @@ class RolesMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-      $user = User::where("phone" , $request->phone)->first();
-      $user->roles;
-      if ($user->roles[0]->title !== "Driver"){
+
+        $credentials = $request->only('phone', 'password');
+        $token = JWTAuth::attempt($credentials);
 
 
-        return response()->json([
-            'message' => "You are not a Driver",
-            'status'=> false,
-            'code'=> 404 
-             ], 404 );
+        if($token){
 
-
-      }
+            $user = User::where("phone" , $request->phone)->first();
+            $user->roles;
+            if ($user->roles[0]->title !== "Driver"){
+      
+      
+              return response()->json([
+                  'message' => "You are not a Driver",
+                  'status'=> false,
+                  'code'=> 404 
+                   ], 404 );
+      
+      
+            }
+        }else{
+            return response()->json([
+                'message' => "Incorrect credentials",
+                'status'=> false,
+                'code'=> 403 
+                 ], 403 );
+        }
+  
    
 
 

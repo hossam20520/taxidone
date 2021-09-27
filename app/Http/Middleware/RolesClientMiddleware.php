@@ -17,6 +17,12 @@ class RolesClientMiddleware
     public function handle(Request $request, Closure $next)
     {
 
+
+        $credentials = $request->only('phone', 'password');
+        $token = JWTAuth::attempt($credentials);
+
+
+        if($token){
         $user = User::where("phone" , $request->phone)->first();
         $user->roles;
         if ($user->roles[0]->title !== "Client"){
@@ -30,6 +36,18 @@ class RolesClientMiddleware
   
   
         }
+
+    }else{
+      
+        
+        return response()->json([
+            'message' => "Incorrect credentials",
+            'status'=> false,
+            'code'=> 403 
+             ], 403 );
+
+             
+    }
      
         return $next($request);
     }
