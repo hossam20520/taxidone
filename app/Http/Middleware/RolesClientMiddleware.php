@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use App\Models\User;
+use JWTAuth;
 class RolesClientMiddleware
 {
     /**
@@ -46,7 +47,7 @@ class RolesClientMiddleware
             'code'=> 403 
              ], 403 );
 
-             
+
     }
      
         return $next($request);
