@@ -41,9 +41,10 @@ class DriverController extends Controller
   
     $rol = $pers->roles[0]->title;
 
-    return $rol;
+    // return $rol;
     if($rol == "Driver"){
         $driver = Driver::where("user_id" ,$user->id)->first();
+        return $driver;
         $travels = Travel::where("driver_id" , $driver->id )->get();
         return response()->json([
             'payload' =>  $travels,
