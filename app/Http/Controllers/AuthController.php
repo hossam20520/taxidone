@@ -167,9 +167,18 @@ class AuthController extends Controller
 
             Confimation::create(["code"=> $fourRandomDigit  , "user_id"=> $user->id , "status"=> "pending"]);
              
+            $driver = Driver::where('user_id', $user->id)->first();
 
+                $userCustom = [
+                    "id"=> $driver->id, 
+                    "name"=> $user->name,
+                    "email"=> $user->email,
+                    "approved"=> $user->approved,
+                    "phone"=>  $user->phone ,
+                    "role"=> "Driver"
+                ];
             return response()->json([
-                'payload' => $user,
+                'payload' => $userCustom,
                 'access_token' => $token ,
                 'status'=> true,
                 'code'=> 200
@@ -202,7 +211,7 @@ class AuthController extends Controller
 
             if($user->approved == 0){
                 return response()->json([
-                    'message' => "your account has not been approved yet",
+                    'message' => "Your account has not been approved yet",
                     'status'=> false,
                     'code'=> 401
                      ], 401);
@@ -215,19 +224,26 @@ class AuthController extends Controller
             $confirm = Confimation::where('user_id', $user->id)->first();
             $driver = Driver::where('user_id', $user->id)->first();
             $subscription = Subscriptiondriver::where('driver_id',$driver->id)->where('status',"runing")->first();
-           
             $car = Car::where('driver_id', $driver->id)->first();
-           
+
+            $userCustom = [
+                "id"=> $driver->id , 
+                "name"=> $user->name,
+                "email"=> $user->email,
+                "approved"=> $user->approved,
+                "phone"=>  $user->phone ,
+                "role"=> "Driver"
+            ];
+
+
+
    
-           //  return $subscription;
             if ( $confirm->status == "pending"){
                 $status = false;
             }else{
                 $status = true;
             }
-   
-           //  return $subscription;
-   
+
             if($subscription == null){
              $sub = false;
    
@@ -247,7 +263,7 @@ class AuthController extends Controller
               }
          
    
-        $array = array( "user"=> $user,  "car_registerd" => $car , "subscription"=>  $sub , "confirmed"=> $status );
+        $array = array("user"=>  $userCustom,  "car_registerd" => $car , "subscription"=>  $sub , "confirmed"=> $status );
 
 
             return response()->json([
@@ -281,10 +297,19 @@ class AuthController extends Controller
         $credentials = $request->only('phone', 'password');
         $token = JWTAuth::attempt($credentials);
         $user = User::where('phone', $request->phone)->first();
-
+        $client = Client::where('user_id', $user->id)->first();
         if($token){
 
-            $array = array( "user"=> $user );
+            $userCustom = [
+                "id"=> $client->id, 
+                "name"=> $user->name,
+                "email"=> $user->email,
+                "approved"=> $user->approved,
+                "phone"=>  $user->phone ,
+                "role"=> "Client"
+            ];
+
+            $array = array( "user"=> $userCustom );
             return response()->json([
                 'payload' =>  $array,
                 'access_token' => $token ,
@@ -333,7 +358,7 @@ class AuthController extends Controller
             $fourRandomDigit = rand(1000,9999);
             $user = User::create($request->all());
             $user->roles()->sync($request->input('roles', [4]));
-            $driver = Client::create([
+            $client = Client::create([
             
                 "name"=>$user->name,
                 "email"=> $user->email,
@@ -343,6 +368,16 @@ class AuthController extends Controller
 
             ]);
 
+
+            $userCustom = [
+                "id"=> $client->id , 
+                "name"=> $user->name,
+                "email"=> $user->email,
+                "approved"=> $user->approved,
+                "phone"=>  $user->phone ,
+                "role"=> "Client"
+            ];
+
             $credentials = $request->only('phone', 'password');
             $token = JWTAuth::attempt($credentials);
 
@@ -350,7 +385,7 @@ class AuthController extends Controller
              
 
             return response()->json([
-                'payload' => $user,
+                'payload' => $userCustom,
                 'access_token' => $token ,
                 'status'=> true,
                 'code'=> 200

@@ -21,10 +21,8 @@ class TravelController extends Controller
         $token = JWTAuth::getToken();
         $user = JWTAuth::toUser($token);
         $driver = Driver::where("user_id" , $request->driver_id)->first();
-
-        // return $user->id;
         $client = Client::where("user_id" , $user->id)->first();
-// return $user->id;
+        
    $ar = [
     "travel" => $request->travel,
     "travel_cost"=>$request->travel_cost,
