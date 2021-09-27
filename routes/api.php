@@ -35,6 +35,7 @@ Route::group([ 'middleware' => ['jwt.verify']], function() {
     Route::post('client/travel', 'TravelController@store');
     Route::put('client/travel/{ID}', 'TravelController@update');
     Route::get('user/client/{ID}', 'UserController@getUserClient');
+    Route::post('client/confirm', 'AuthController@confirmClient');
 });
 
 

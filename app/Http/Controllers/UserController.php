@@ -25,11 +25,21 @@ class UserController extends Controller
   }
       
 
+
+
+
         $user =  User::find( $driver->user_id);
 
-
+              $userCustom = [
+                    "id"=> $driver->id, 
+                    "name"=> $user->name,
+                    "email"=> $user->email,
+                    "approved"=> $user->approved,
+                    "phone"=>  $user->phone ,
+                    "role"=> "Driver"
+                ];
            return response()->json([
-               'payload' =>  $user,
+               'payload' =>  $userCustom,
                'status'=> true,
                'code'=> 200
                 ], 200);
@@ -59,7 +69,15 @@ class UserController extends Controller
  
          $user =  User::find( $client->user_id);
  
- 
+         $userCustom = [
+            "id"=> $client->id, 
+            "name"=> $user->name,
+            "email"=> $user->email,
+            "approved"=> $user->approved,
+            "phone"=>  $user->phone ,
+            "role"=> "Client"
+            ];
+            
             return response()->json([
                 'payload' =>  $user,
                 'status'=> true,
