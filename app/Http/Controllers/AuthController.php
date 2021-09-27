@@ -298,6 +298,7 @@ class AuthController extends Controller
         $token = JWTAuth::attempt($credentials);
         $user = User::where('phone', $request->phone)->first();
         $client = Client::where('user_id', $user->id)->first();
+        return $client;
         if($token){
 
             $userCustom = [

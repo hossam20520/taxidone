@@ -27,8 +27,12 @@ class Kernel extends HttpKernel
         'throttle'         => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified'         => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
+        'role.driver' => \App\Http\Middleware\RolesMiddleware::class,
+        'role.client' => \App\Http\Middleware\RolesClientMiddleware::class,
     ];
 
+
+    
     protected $middlewareGroups = [
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
