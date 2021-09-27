@@ -38,7 +38,7 @@ Route::group([ 'middleware' => ['jwt.verify']], function() {
 });
 
 
-Route::group([ 'middleware' => ['jwt.verify' , 'role.driver']], function() {
+Route::group([ 'middleware' => ['jwt.verify']], function() {
     Route::post('cars/media', 'Api\V1\Admin\CarsApiController@storeMedia')->name('cars.storeMedia');
     Route::post('driver/confirm', 'AuthController@confirm');
     Route::get('traveles/history', 'DriverController@history');

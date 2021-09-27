@@ -31,7 +31,7 @@ class DriverController extends Controller
     $token = JWTAuth::getToken();
     $user = JWTAuth::toUser($token);
     
-   
+   return $user;
 
 
 
