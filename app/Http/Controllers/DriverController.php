@@ -1,9 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Stripe;
+use Session;
+use TymonJWTAuthExceptionsJWTException;
+use SymfonyComponentHttpFoundationResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
 use App\Models\Subscription;
+use App\Models\Subscriptiondriver;
 use App\Models\Travel;
 use App\Models\Driver;
 use App\Models\Client;
@@ -12,6 +17,114 @@ use App\Models\Car;
 use JWTAuth;
 class DriverController extends Controller
 {
+
+
+
+
+
+
+public function check(Request $request){
+
+
+    $token = JWTAuth::getToken();
+    $user = JWTAuth::toUser($token);
+    $driver = Driver::where("user_id" , $user->id )->first();
+
+    $sub = Subscriptiondriver::where("driver_id" , $driver->id )->where("status" ,"runing" )->first();
+    if($sub == null){  
+
+        return response()->json([
+            'message' => "You dont have a Subscriptio",
+            'status'=> false,
+            'code'=> 404
+             ], 404);
+
+
+    }else{
+        return response()->json([
+            'message' => "You have a Subscriptio",
+            'status'=> true,
+            'code'=> 200
+             ], 200);
+    }
+
+}
+
+
+
+
+
+ public function subscrip(Request $request){
+    $token = JWTAuth::getToken();
+    $user = JWTAuth::toUser($token);
+    $driver = Driver::where("user_id" , $user->id )->first();
+
+    $sub = Subscriptiondriver::where("driver_id" , $driver->id )->where("status" ,"runing" )->first();
+
+    if($sub == null){
+
+      $pack =  Subscription::find($request->package_id);
+
+
+  if($pack == null){
+
+    return response()->json([
+        'message' => "Not Found Package",
+        'status'=> false,
+        'code'=> 404
+         ], 404);
+  }
+
+
+
+  Subscriptiondriver::create([
+      "driver_id" => $driver->id,
+      "subscription_id" => $request->package_id,
+      "subscription_date" =>"15-09-2021 00:22:09",
+      "expiration_date" =>"29-09-2021 00:22:05",
+      "status" => "runing"
+  ]);
+
+    //   Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+    //   Stripe\Charge::create ([
+    //         "amount" => $pack->amount * 100,
+    //         "currency" => "usd",
+    //         "source" => $request->stripeToken,
+    //         "description" => "Subscribtion." 
+    //    ]);
+
+       return response()->json([
+        'message' => "Success payment",
+        'status'=> true,
+        'code'=> 200
+         ], 200);
+
+    }else{
+
+        return response()->json([
+            'message' => "You already have Subscription running",
+            'status'=> false,
+            'code'=> 409
+             ], 409);
+
+
+
+    }
+
+
+
+
+
+ }
+
+
+
+
+
+
+
+
+
    public function getSub(Request $request){
 
     $subs = Subscription::all();

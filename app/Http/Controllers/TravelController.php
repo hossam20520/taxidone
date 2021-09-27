@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Client;
 use App\Models\Driver;
 use App\Models\Travel;
+use App\Models\Complaint;
+use App\Models\Rate;
+
 use Tymon\JWTAuth\Exceptions\JWTException;
 use TymonJWTAuthExceptionsJWTException;
 use App\Http\Resources\Admin\UserResource;
@@ -15,6 +18,66 @@ class TravelController extends Controller
 {
     //
 
+public function rate(Request $request){
+
+    $token = JWTAuth::getToken();
+    $user = JWTAuth::toUser($token);
+    $client = Client::where("user_id" , $user->id)->first();
+    $travel = Travel::where("travel" ,$request->travel_id )->first();
+
+    if($travel == null){
+        return response()->json([
+            'message' => "Not found Travel",
+            'status'=> false,
+            'code'=> 404
+             ], 404);
+      }
+
+
+    Rate::create([
+        "travel_id"=>$travel->id,
+        "rate"=>$request->rate,
+        "client_id"=> $client->id,
+        "feedback"=> $request->feedback
+    ]);
+
+    return response()->json([
+        'message' => "added rate",
+        'status'=> true,
+        'code'=> 200
+         ], 200);
+
+}
+    public function feedback(Request $request){
+
+        $token = JWTAuth::getToken();
+        $user = JWTAuth::toUser($token);
+        $client = Client::where("user_id" , $user->id)->first();
+        $travel = Travel::where("travel" ,$request->travel_id )->first();
+
+      if($travel == null){
+        return response()->json([
+            'message' => "Not found Travel",
+            'status'=> false,
+            'code'=> 404
+             ], 404);
+      }
+
+        Complaint::create([
+            "complaints"=> $request->feedback,
+            "client_id"=>$client->id,
+            "status"=>"pending",
+            "trip_id"=> $travel->id
+        ]);
+        
+        return response()->json([
+            'message' => "sent feedback",
+            'status'=> true,
+            'code'=> 200
+             ], 200);
+
+    }
+
 
     public function store(Request $request){
         
@@ -22,7 +85,7 @@ class TravelController extends Controller
         $user = JWTAuth::toUser($token);
         $driver = Driver::where("user_id" , $request->driver_id)->first();
         $client = Client::where("user_id" , $user->id)->first();
-        
+
    $ar = [
     "travel" => $request->travel,
     "travel_cost"=>$request->travel_cost,

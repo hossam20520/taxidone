@@ -36,6 +36,8 @@ Route::group([ 'middleware' => ['jwt.verify']], function() {
     Route::put('client/travel/{ID}', 'TravelController@update');
     Route::get('user/client/{ID}', 'UserController@getUserClient');
     Route::post('client/confirm', 'AuthController@confirmClient');
+    Route::post('client/travel/pay', 'PaymentController@payment');
+    Route::post('feedback/travel', 'TravelController@feedback');
 });
 
 
@@ -45,7 +47,13 @@ Route::group([ 'middleware' => ['jwt.verify']], function() {
     Route::get('traveles/history', 'DriverController@history');
     Route::get('user/driver/{ID}', 'UserController@getUserDriver');
     Route::post('car/register', 'DriverController@registerCar');
+
+    Route::post('driver/subscrip/pay', 'DriverController@subscrip');
  
+    Route::get('subscription/check', 'DriverController@check');
+
+    Route::post('feedback/rate', 'TravelController@rate');
+
 });
 
 
