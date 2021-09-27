@@ -31,11 +31,12 @@ class DriverController extends Controller
     $token = JWTAuth::getToken();
     $user = JWTAuth::toUser($token);
     
-   return $user;
+   
 
 
 
     $pers = User::find($user->id);
+    return $pers;
     $pers->roles;
     $rol = $pers->roles[0]->title;
     if($rol == "Driver"){
